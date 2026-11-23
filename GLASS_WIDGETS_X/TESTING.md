@@ -13,7 +13,12 @@
 
 ## Build status
 
-The project reached Gradle configuration successfully. A full Android compile could not run in this environment because no Android SDK (`ANDROID_HOME`, `ANDROID_SDK_ROOT`, or `sdk.dir`) is installed or configured. No APK was generated.
+- JDK 17 is configured.
+- Android SDK Platform 36 and Build Tools 36 are installed.
+- `./gradlew clean assembleDebug` completed successfully.
+- `./gradlew lint` completed successfully.
+- A debug APK is generated under `app/build/outputs/apk/debug/app-debug.apk`.
+- No device or emulator was available for automated on-device widget/UI testing.
 
 ## Runtime items to verify on a device
 

@@ -1,0 +1,26 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="12dp"
+    android:background="@drawable/glass_card">
+    <TextView android:id="@+id/music_title" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:text="Music"
+        android:textColor="#FFFFFFFF" android:textSize="16sp" android:textStyle="bold"
+        android:gravity="center" android:singleLine="true"/>
+    <TextView android:id="@+id/music_artist" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:text="Open a media app"
+        android:textColor="#D8C5FF" android:textSize="11sp"
+        android:gravity="center" android:singleLine="true"/>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:gravity="center" android:paddingTop="8dp">
+        <Button android:id="@+id/music_previous" android:layout_width="48dp" android:layout_height="48dp"
+            android:text="PREV" android:textSize="9sp" android:textAllCaps="false"/>
+        <Button android:id="@+id/music_play" android:layout_width="48dp" android:layout_height="48dp"
+            android:text="PLAY" android:textSize="9sp" android:textAllCaps="false"/>
+        <Button android:id="@+id/music_next" android:layout_width="48dp" android:layout_height="48dp"
+            android:text="NEXT" android:textSize="9sp" android:textAllCaps="false"/>
+    </LinearLayout>
+</LinearLayout>

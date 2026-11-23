@@ -29,7 +29,8 @@ object WidgetThemeSupport {
             NoteWidgetProvider::class.java,
             PhotoWidgetProvider::class.java,
             SearchWidgetProvider::class.java,
-            QuickLaunchWidgetProvider::class.java
+            QuickLaunchWidgetProvider::class.java,
+            MusicWidgetProvider::class.java
         )
         providers.forEach { provider ->
             val ids = manager.getAppWidgetIds(ComponentName(context, provider))

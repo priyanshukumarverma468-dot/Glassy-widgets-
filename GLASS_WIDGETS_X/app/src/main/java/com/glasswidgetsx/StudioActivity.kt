@@ -128,13 +128,33 @@ class StudioActivity : Activity() {
             })
         }
         design.addView(radius)
+        val clock24 = CheckBox(this).apply {
+            text = "Use 24-hour clock"
+            setTextColor(Color.WHITE)
+            isChecked = prefs.getBoolean("clock_24_hour", false)
+            setOnCheckedChangeListener { _, checked ->
+                prefs.edit().putBoolean("clock_24_hour", checked).apply()
+                WidgetThemeSupport.refreshAll(this@StudioActivity)
+            }
+        }
+        val clockSeconds = CheckBox(this).apply {
+            text = "Show seconds"
+            setTextColor(Color.WHITE)
+            isChecked = prefs.getBoolean("clock_show_seconds", false)
+            setOnCheckedChangeListener { _, checked ->
+                prefs.edit().putBoolean("clock_show_seconds", checked).apply()
+                WidgetThemeSupport.refreshAll(this@StudioActivity)
+            }
+        }
+        design.addView(clock24)
+        design.addView(clockSeconds)
         design.addView(smallButton("Change accent color") {
             val colors = intArrayOf(0xFFD8C5FF.toInt(), 0xFF9DE7D7.toInt(), 0xFFFFC7A8.toInt(), 0xFF9FC8FF.toInt())
             val current = prefs.getInt("color_index", 0)
             val next = (current + 1) % colors.size
             prefs.edit().putInt("color_index", next).putInt("accent", colors[next]).apply()
             preview.background = glassBackground(colors[next], opacity.progress)
-        }, design)
+        })
         val themeName = EditText(this).apply {
             hint = "Theme name"
             setHintTextColor(0xFF888393.toInt())
@@ -207,14 +227,14 @@ class StudioActivity : Activity() {
         }
         weather.addView(city, LinearLayout.LayoutParams(-1, dp(48)))
         weatherResult = label("Weather result will appear here.", 13, Color.WHITE, false)
-        weather.addView(smallButton("GET WEATHER") { fetchWeather(city.text.toString().trim()) }, weather)
+        weather.addView(smallButton("GET WEATHER") { fetchWeather(city.text.toString().trim()) })
         weather.addView(smallButton("SAVE CITY FOR HOME WIDGET") {
             val value = city.text.toString().trim()
             if (value.isNotEmpty()) {
                 prefs.edit().putString("weather_city", value).apply()
                 Toast.makeText(this, "Weather widget city saved.", Toast.LENGTH_SHORT).show()
             }
-        }, weather)
+        })
         weather.addView(weatherResult)
         page.addView(weather)
 
@@ -227,8 +247,8 @@ class StudioActivity : Activity() {
                 type = "image/*"
             }
             startActivityForResult(intent, pickPhoto)
-        }, photo)
-        photo.addView(smallButton("SET AS DEVICE WALLPAPER") { setPickedWallpaper() }, photo)
+        })
+        photo.addView(smallButton("SET AS DEVICE WALLPAPER") { setPickedWallpaper() })
         page.addView(photo)
 
         heading(page, "04  WALLPAPERS & THEMES")
@@ -236,7 +256,7 @@ class StudioActivity : Activity() {
         wall.addView(label("Use a selected image as your Android wallpaper. Theme accent and opacity preferences are saved locally.", 13, Color.WHITE, false))
         wall.addView(smallButton("OPEN WALLPAPER SETTINGS") {
             startActivity(Intent(WallpaperManager.ACTION_LIVE_WALLPAPER_CHOOSER))
-        }, wall)
+        })
         page.addView(wall)
 
         heading(page, "05  MUSIC")
@@ -249,7 +269,7 @@ class StudioActivity : Activity() {
             try { startActivity(launch) } catch (_: Exception) {
                 Toast.makeText(this, "No supported music app found.", Toast.LENGTH_SHORT).show()
             }
-        }, music)
+        })
         page.addView(music)
 
         heading(page, "06  CALENDAR & SMART TOOLS")
@@ -262,14 +282,14 @@ class StudioActivity : Activity() {
             } else {
                 Toast.makeText(this, "Calendar access already granted.", Toast.LENGTH_SHORT).show()
             }
-        }, calendar)
+        })
         calendar.addView(smallButton("CREATE CALENDAR EVENT") {
             val intent = Intent(Intent.ACTION_INSERT).setData(CalendarContract.Events.CONTENT_URI)
                 .putExtra(CalendarContract.Events.TITLE, "New event")
             try { startActivity(intent) } catch (_: Exception) {
                 Toast.makeText(this, "No calendar app available.", Toast.LENGTH_SHORT).show()
             }
-        }, calendar)
+        })
         page.addView(calendar)
 
         heading(page, "07  ICON COLLECTIONS")
@@ -280,21 +300,21 @@ class StudioActivity : Activity() {
             val next = (prefs.getInt("icon_style", -1) + 1) % options.size
             prefs.edit().putInt("icon_style", next).apply()
             Toast.makeText(this, "Selected: ${options[next]}", Toast.LENGTH_SHORT).show()
-        }, icons)
+        })
         page.addView(icons)
 
         heading(page, "08  APP SHORTCUTS")
         val shortcuts = panel()
         shortcuts.addView(label("Open common Android settings from here.", 13, Color.WHITE, false))
-        shortcuts.addView(smallButton("OPEN DISPLAY SETTINGS") { openSettings(android.provider.Settings.ACTION_DISPLAY_SETTINGS) }, shortcuts)
-        shortcuts.addView(smallButton("OPEN SOUND SETTINGS") { openSettings(android.provider.Settings.ACTION_SOUND_SETTINGS) }, shortcuts)
-        shortcuts.addView(smallButton("OPEN BLUETOOTH SETTINGS") { openSettings(android.provider.Settings.ACTION_BLUETOOTH_SETTINGS) }, shortcuts)
+        shortcuts.addView(smallButton("OPEN DISPLAY SETTINGS") { openSettings(android.provider.Settings.ACTION_DISPLAY_SETTINGS) })
+        shortcuts.addView(smallButton("OPEN SOUND SETTINGS") { openSettings(android.provider.Settings.ACTION_SOUND_SETTINGS) })
+        shortcuts.addView(smallButton("OPEN BLUETOOTH SETTINGS") { openSettings(android.provider.Settings.ACTION_BLUETOOTH_SETTINGS) })
         page.addView(shortcuts)
 
         heading(page, "09  BACKGROUND TIMER")
         val timer = panel()
         timer.addView(label("The stopwatch and countdown tools are available in Tools. Start the foreground countdown from the timer screen for ongoing Android notifications.", 12, 0xFFD5D0DF.toInt(), false))
-        timer.addView(smallButton("OPEN STOPWATCH & TIMER") { startActivity(Intent(this, ToolsActivity::class.java)) }, timer)
+        timer.addView(smallButton("OPEN STOPWATCH & TIMER") { startActivity(Intent(this, ToolsActivity::class.java)) })
         page.addView(timer)
 
         page.addView(label("GLASS WIDGETS X  •  PREMIUM STUDIO", 10, 0xFF8C8797.toInt(), true).apply {
@@ -314,19 +334,19 @@ class StudioActivity : Activity() {
                 Toast.makeText(this, "Photo selected. You can set it as wallpaper.", Toast.LENGTH_SHORT).show()
             }
         }
+    }
 
-        override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-            super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-            if (requestCode == 82) {
-                val granted = grantResults.isNotEmpty() &&
-                    grantResults[0] == PackageManager.PERMISSION_GRANTED
-                Toast.makeText(
-                    this,
-                    if (granted) "Calendar access granted." else "Calendar permission was denied.",
-                    Toast.LENGTH_SHORT
-                ).show()
-                com.glasswidgetsx.widgets.WidgetThemeSupport.refreshAll(this)
-            }
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 82) {
+            val granted = grantResults.isNotEmpty() &&
+                grantResults[0] == PackageManager.PERMISSION_GRANTED
+            Toast.makeText(
+                this,
+                if (granted) "Calendar access granted." else "Calendar permission was denied.",
+                Toast.LENGTH_SHORT
+            ).show()
+            com.glasswidgetsx.widgets.WidgetThemeSupport.refreshAll(this)
         }
     }
 

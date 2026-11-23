@@ -92,10 +92,16 @@ class MainActivity : Activity() {
         widgetCard("Quick Launch", "Camera, gallery, app search and settings", "ADD SHORTCUTS") {
             addWidget(com.glasswidgetsx.widgets.QuickLaunchWidgetProvider::class.java)
         }
+        widgetCard("Music Controls", "Play/pause, previous and next for active media", "ADD MUSIC") {
+            addWidget(com.glasswidgetsx.widgets.MusicWidgetProvider::class.java)
+        }
 
         section("CUSTOMIZATION & SMART FEATURES", "Open feature studio")
         widgetCard("Glass Widget Studio", "Themes, clock styles, photo, wallpaper and smart tools", "OPEN STUDIO") {
             startActivity(Intent(this, StudioActivity::class.java))
+        }
+        widgetCard("App Settings & Backup", "Language, clock, permissions, local backup and restore", "OPEN SETTINGS") {
+            startActivity(Intent(this, SettingsActivity::class.java))
         }
 
         section("UTILITY TOOLS", "Working in-app tools")
@@ -103,7 +109,7 @@ class MainActivity : Activity() {
             startActivity(Intent(this, ToolsActivity::class.java))
         }
 
-        content.addView(text("BUILD 1.4.0  •  ANDROID 8.0+", 10f, 0xFF777382.toInt(), true).apply {
+        content.addView(text("BUILD 1.5.0  •  ANDROID 8.0+", 10f, 0xFF777382.toInt(), true).apply {
             gravity = Gravity.CENTER
             setPadding(0, dp(26), 0, 0)
             letterSpacing = 0.12f

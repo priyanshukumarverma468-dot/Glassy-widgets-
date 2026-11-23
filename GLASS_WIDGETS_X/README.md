@@ -13,6 +13,7 @@ Glass Widgets X is a native Android 8.0+ home-screen widget customization app.
 - Configurable photo frame
 - Android search widget
 - Quick launch widget
+- Music media-button widget
 - 24 clock design presets
 - Live Studio preview
 - Accent, text, secondary, background, opacity, font size and corner controls
@@ -54,9 +55,10 @@ The photo widget uses persisted read access only for the image selected by the u
 ## Not implemented
 
 - True system-wide icon-pack replacement, which requires launcher-specific APIs
-- An external live-wallpaper engine
-- In-widget music playback/media-session controls
-- Custom search-provider configuration
-- iOS widgets or cross-device sync
+- A launcher-wide icon pack replacement engine
+- A cross-device or Google Drive cloud-sync service
+- A third-party live-wallpaper engine
+- Native album artwork extraction in the music widget
+- iOS widgets or cross-device widget synchronization
 
 Weather requires network access. Calendar and photo availability depend on Android permissions and launcher/provider behavior.

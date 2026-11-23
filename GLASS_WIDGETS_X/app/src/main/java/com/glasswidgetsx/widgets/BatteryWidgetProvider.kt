@@ -22,10 +22,12 @@ class BatteryWidgetProvider : AppWidgetProvider() {
             BatteryManager.BATTERY_STATUS_DISCHARGING -> "On battery"
             else -> "Battery status"
         }
+        val temperatureTenths = battery?.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, -1) ?: -1
+        val temperature = if (temperatureTenths >= 0) " • ${temperatureTenths / 10.0}°C" else ""
         ids.forEach { id ->
             val views = RemoteViews(context.packageName, R.layout.widget_battery).apply {
                 setTextViewText(R.id.battery_percent, "$percent%")
-                setTextViewText(R.id.battery_state, state)
+                setTextViewText(R.id.battery_state, state + temperature)
                 WidgetThemeSupport.apply(context, this, R.id.widget_root, R.id.battery_percent, R.id.battery_state)
             }
             manager.updateAppWidget(id, views)

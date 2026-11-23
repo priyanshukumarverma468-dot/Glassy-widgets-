@@ -36,6 +36,10 @@ class WeatherWidgetProvider : AppWidgetProvider() {
                 val temp = data.optDouble("temperature_2m")
                 val humidity = data.optInt("relative_humidity_2m")
                 val wind = data.optDouble("wind_speed_10m")
+                prefs.edit()
+                    .putString("weather_cached_city", loc.optString("name", city))
+                    .putString("weather_cached_result", "${temp.toInt()}°C|$humidity|${wind.toInt()}|${loc.optString("name", city)}")
+                    .apply()
                 ids.forEach { id ->
                     val views = RemoteViews(context.packageName, R.layout.widget_weather).apply {
                         setTextViewText(R.id.weather_city, loc.optString("name", city).uppercase())
@@ -48,7 +52,15 @@ class WeatherWidgetProvider : AppWidgetProvider() {
             } catch (_: Exception) {
                 ids.forEach { id ->
                     val views = RemoteViews(context.packageName, R.layout.widget_weather).apply {
-                        setTextViewText(R.id.weather_details, "Weather unavailable • open app to retry")
+                        val cached = prefs.getString("weather_cached_result", null)
+                        if (cached != null) {
+                            val parts = cached.split("|")
+                            setTextViewText(R.id.weather_city, (parts.getOrElse(3) { city }).uppercase())
+                            setTextViewText(R.id.weather_temp, "${parts.getOrElse(0) { "--°" }}")
+                            setTextViewText(R.id.weather_details, "Offline • Humidity ${parts.getOrElse(1) { "--" }}% • Wind ${parts.getOrElse(2) { "--" }} km/h")
+                        } else {
+                            setTextViewText(R.id.weather_details, "Weather unavailable • open app to retry")
+                        }
                         WidgetThemeSupport.apply(context, this, R.id.widget_root, R.id.weather_city, R.id.weather_temp, R.id.weather_details)
                     }
                     manager.updateAppWidget(id, views)

@@ -5,14 +5,14 @@ plugins {
 
 android {
     namespace = "com.glasswidgetsx"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.glasswidgetsx"
         minSdk = 26
-        targetSdk = 35
-        versionCode = 4
-        versionName = "1.4.0"
+        targetSdk = 36
+        versionCode = 5
+        versionName = "1.5.0"
     }
 
     compileOptions {

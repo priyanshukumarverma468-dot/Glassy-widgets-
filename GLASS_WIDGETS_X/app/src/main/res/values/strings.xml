@@ -7,4 +7,5 @@
     <string name="note_widget_description">Editable quick note widget</string>
     <string name="search_widget_description">Tap to open Android search</string>
     <string name="quick_launch_widget_description">Camera, gallery, app search and settings shortcuts</string>
+    <string name="music_widget_description">Media-session play, previous and next controls</string>
 </resources>
