@@ -1,0 +1,9 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root" android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="horizontal" android:gravity="center" android:padding="10dp"
+    android:background="@drawable/glass_card">
+    <TextView android:id="@+id/quick_camera" style="@style/QuickLaunchButton" android:text="CAM"/>
+    <TextView android:id="@+id/quick_gallery" style="@style/QuickLaunchButton" android:text="PIC"/>
+    <TextView android:id="@+id/quick_search" style="@style/QuickLaunchButton" android:text="APP"/>
+    <TextView android:id="@+id/quick_settings" style="@style/QuickLaunchButton" android:text="SET"/>
+</LinearLayout>

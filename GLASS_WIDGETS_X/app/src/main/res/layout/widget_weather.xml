@@ -1,0 +1,15 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:gravity="center_vertical"
+    android:padding="14dp" android:background="@drawable/glass_card">
+    <TextView android:id="@+id/weather_city" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:text="WEATHER • SET CITY IN APP"
+        android:textColor="#FFD8C5FF" android:textSize="10sp" android:letterSpacing="0.08"/>
+    <TextView android:id="@+id/weather_temp" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:text="--°" android:textColor="#FFFFFFFF"
+        android:textSize="32sp" android:textStyle="bold"/>
+    <TextView android:id="@+id/weather_details" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:text="Open app to refresh weather"
+        android:textColor="#FFD2CFDA" android:textSize="11sp"/>
+</LinearLayout>

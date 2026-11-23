@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Glass Widgets X</string>
+    <string name="clock_widget_description">Live glass digital clock and date</string>
+    <string name="battery_widget_description">Device battery percentage and charging state</string>
+    <string name="date_widget_description">Large glass calendar date</string>
+    <string name="analog_clock_widget_description">Glass analog clock</string>
+    <string name="note_widget_description">Editable quick note widget</string>
+    <string name="search_widget_description">Tap to open Android search</string>
+    <string name="quick_launch_widget_description">Camera, gallery, app search and settings shortcuts</string>
+</resources>

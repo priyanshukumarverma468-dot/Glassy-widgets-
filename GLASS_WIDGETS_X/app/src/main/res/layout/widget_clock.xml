@@ -1,0 +1,14 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:gravity="center"
+    android:padding="12dp" android:background="@drawable/glass_card">
+    <TextClock android:id="@+id/clock_time" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:format12Hour="hh:mm"
+        android:format24Hour="HH:mm" android:text="08:49"
+        android:textColor="#FFFFFFFF" android:textSize="34sp" android:textStyle="bold"
+        android:fontFamily="sans-serif-condensed"/>
+    <TextView android:id="@+id/clock_date" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:text="SUNDAY, 22 NOV"
+        android:textColor="#D8C5FF" android:textSize="12sp" android:letterSpacing="0.08"/>
+</LinearLayout>

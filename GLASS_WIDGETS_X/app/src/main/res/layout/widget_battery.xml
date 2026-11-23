@@ -1,0 +1,13 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:gravity="center" android:padding="12dp"
+    android:background="@drawable/glass_card">
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="BATTERY" android:textColor="#B9B5C7" android:textSize="11sp" android:letterSpacing="0.16"/>
+    <TextView android:id="@+id/battery_percent" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:text="84%" android:textColor="#FFFFFFFF"
+        android:textSize="34sp" android:textStyle="bold"/>
+    <TextView android:id="@+id/battery_state" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:text="Device battery" android:textColor="#D8C5FF" android:textSize="12sp"/>
+</LinearLayout>

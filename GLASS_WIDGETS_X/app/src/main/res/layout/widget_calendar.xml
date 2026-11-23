@@ -1,0 +1,11 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:padding="14dp" android:background="@drawable/glass_card">
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="UPCOMING" android:textColor="#FFD8C5FF" android:textSize="10sp" android:letterSpacing="0.12"/>
+    <TextView android:id="@+id/calendar_line1" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="Calendar permission needed" android:textColor="#FFFFFFFF" android:textSize="13sp" android:paddingTop="8dp"/>
+    <TextView android:id="@+id/calendar_line2" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="Open app to grant access" android:textColor="#FFD2CFDA" android:textSize="12sp" android:paddingTop="5dp"/>
+</LinearLayout>
